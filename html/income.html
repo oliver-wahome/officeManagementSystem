@@ -69,7 +69,19 @@
                 </div>
             </div>
             <div class="col-9">
-                <h1>Income</h1>
+                <div class="row">
+                    <div class="col d-flex align-items-center">
+                        <h1>Income</h1>
+                    </div>
+                    <div class="col d-flex justify-content-end align-items-start">
+                        <button class="btn btn-primary mt-2" id="addIncome" data-bs-toggle="modal" data-bs-target="#incomeFormModal">Add Income</button>
+                    </div>    
+                </div>
+
+                <div class="row">
+
+                </div>
+                
 
                 <table class="table table-dark table-striped">
                     <thead>
@@ -103,5 +115,46 @@
             </div>
         </div>
     </div>
+
+    <!-- Add Income Modal -->
+    <div class="modal fade" id="incomeFormModal" tabindex="-1" aria-labelledby="incomeFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="incomeFormModalLabel">Register to OMS</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="incomeClientName" class="form-label">Client Name</label>
+                        <input type="text" class="form-control" id="incomeClientName" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="incomeAmount" class="form-label">Amount</label>
+                        <input type="number" class="form-control" id="incomeAmount" aria-describedby="emailHelp" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="incomeDate" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="incomeDate" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="incomeTime" class="form-label">Time</label>
+                        <input type="time" class="form-control" id="incomeTime" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="regBtn" onclick=registerUser() type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/income.js"></script>
 </body>
 </html>
