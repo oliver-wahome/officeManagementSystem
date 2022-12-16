@@ -10,14 +10,13 @@ firebase.firestore().collection("income").get()
             var date = doc.data().date;
             var time = doc.data().time;
 
-            // console.log(num+" "+clientName+" "+amount+" "+date+" "+time);
             content += "<tr>";
                 content += "<th scope=\"row\">"+ num +"</th>";
                 content += "<td>"+ clientName +"</td>";
                 content += "<td>Ksh. "+ amount +"</td>";
                 content += "<td>"+ date +"</td>";
                 content += "<td>"+ time +"</td>";
-                content += "<td><span class=\"removeIcon\"><i class=\"fa fa-minus-circle\" aria-hidden=\"true\"></i></span></td>";
+                content += "<td><span onclick=removeRow('"+doc.id+"') class=\"removeIcon\"><i class=\"fa fa-minus-circle\" aria-hidden=\"true\"></i></span></td>";
             content += "</tr>";
 
             num = num + 1;
@@ -32,8 +31,6 @@ function incomeDataSubmit(){
     var date = document.getElementById("incomeDate").value;
     var time = document.getElementById("incomeTime").value;
 
-    console.log(clientName+" "+amount+" "+date+" "+time);
-
     firebase.firestore().collection("income").doc().set({
         clientName: clientName,
         amount: amount,
@@ -41,5 +38,16 @@ function incomeDataSubmit(){
         time: time
     }).then(() => {
         window.location.reload();
-    })
+    });
+}
+
+//removing a row(document) of income data onclick of its removeBtn
+function removeRow(docId){
+    firebase.firestore().collection("income").doc(docId).delete()
+        .then(() => {
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
 }

@@ -21,11 +21,11 @@ firebase.firestore().collection("inventory").get()
                 content += "<td>Ksh. "+ amount +"</td>";
                 content += "<td>"+ date +"</td>";
                 content += "<td>"+ time +"</td>";
-                content += "<td><span class=\"removeIcon\"><i class=\"fa fa-minus-circle\" aria-hidden=\"true\"></i></span></td>";
+                content += "<td><span onclick=removeRow('"+doc.id+"') class=\"removeIcon\"><i class=\"fa fa-minus-circle\" aria-hidden=\"true\"></i></span></td>";
             content += "</tr>";
 
             num = num + 1;
-        })
+        });
         $("#inventoryTableBody").append(content);
     })
 
@@ -38,8 +38,6 @@ function inventoryDataSubmit(){
     var date = document.getElementById("itemDate").value;
     var time = document.getElementById("itemTime").value;
 
-    console.log(item+" "+quantity+" "+itemCost+" "+amount+" "+date+" "+time);
-
     firebase.firestore().collection("inventory").doc().set({
         item: item,
         quantity: quantity,
@@ -49,5 +47,16 @@ function inventoryDataSubmit(){
         time: time
     }).then(() => {
         window.location.reload();
-    })
+    });
+}
+
+//removing a row(document) of inventory data onclick of its removeBtn
+function removeRow(docId){
+    firebase.firestore().collection("inventory").doc(docId).delete()
+        .then(() => {
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
 }

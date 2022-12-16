@@ -17,11 +17,11 @@ firebase.firestore().collection("expenses").get()
                 content += "<td>Ksh. "+ amount +"</td>";
                 content += "<td>"+ date +"</td>";
                 content += "<td>"+ time +"</td>";
-                content += "<td><span class=\"removeIcon\"><i class=\"fa fa-minus-circle\" aria-hidden=\"true\"></i></span></td>";
+                content += "<td><span onclick=removeRow('"+doc.id+"') class=\"removeIcon\"><i class=\"fa fa-minus-circle\" aria-hidden=\"true\"></i></span></td>";
             content += "</tr>";
 
             num = num + 1;
-        })
+        });
         $("#expensesTableBody").append(content);
     })
 
@@ -32,8 +32,6 @@ function expenseDataSubmit(){
     var date = document.getElementById("expenseDate").value;
     var time = document.getElementById("expenseTime").value;
 
-    console.log(expense+" "+amount+" "+date+" "+time);
-
     firebase.firestore().collection("expenses").doc().set({
         expense: expense,
         amount: amount,
@@ -41,5 +39,16 @@ function expenseDataSubmit(){
         time: time
     }).then(() => {
         window.location.reload();
-    })
+    });
+}
+
+//removing a row(document) of expenses data onclick of its removeBtn
+function removeRow(docId){
+    firebase.firestore().collection("expenses").doc(docId).delete()
+        .then(() => {
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
 }
