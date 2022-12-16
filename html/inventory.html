@@ -14,6 +14,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <!-- Importing jquery script -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container-fluid pageContainer">
@@ -28,13 +30,13 @@
                     <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item mx-3">
-                                <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                                <a class="nav-link" href="#">Login</a>
                             </li>
                             <li class="nav-item mx-3">
-                                <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#regModal">Register</a>
+                                <a class="nav-link" href="#">Register</a>
                             </li>
                             <li class="nav-item mx-3 btn btn-danger p-0">
-                                <a class="nav-link" href="">Log out</a>
+                                <a class="nav-link" href="#">Log out</a>
                             </li>
                         </ul>
                     </div>
@@ -63,66 +65,81 @@
                 </div>
 
                 <div class="row d-flex justify-content-center">
+                    <a class="col-8 text-center btn btn-light my-2 p-2" href="inventory.html">
+                        Inventory
+                    </a>
+                </div>
+
+                <div class="row d-flex justify-content-center">
                     <a class="col-8 text-center btn btn-light my-2 p-2" href="profile.html">
                         Profile
                     </a>
                 </div>
             </div>
             <div class="col-9">
-                <h1>Home</h1>
+                <div class="row">
+                    <div class="col d-flex align-items-center">
+                        <h1>Inventory</h1>
+                    </div>
+                    <div class="col d-flex justify-content-end align-items-start">
+                        <button class="btn btn-primary mt-2" id="addItemBtn" data-bs-toggle="modal" data-bs-target="#inventoryFormModal">Add Item</button>
+                    </div> 
+                </div>
+
+                <div class="row px-2">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Item</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Item Cost</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryTableBody">
+                            
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <!-- Add Item to inventory Modal -->
+    <div class="modal fade" id="inventoryFormModal" tabindex="-1" aria-labelledby="inventoryFormModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="loginModalLabel">Login to OMS</h1>
+                    <h1 class="modal-title fs-5" id="inventoryFormModalLabel">Add Inventory to table</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="loginEmail" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" required />
+                        <label for="itemName" class="form-label">Item</label>
+                        <input type="text" class="form-control" id="itemName" required />
                     </div>
                     <div class="mb-3">
-                        <label for="loginPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="loginPassword" required />
+                        <label for="quantity" class="form-label">Quantity</label>
+                        <input type="text" class="form-control" id="quantity" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="itemCost" class="form-label">Item Cost</label>
+                        <input type="text" class="form-control" id="itemCost" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="itemDate" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="itemDate" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="itemTime" class="form-label">Time</label>
+                        <input type="time" class="form-control" id="itemTime" required />
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="loginBtn" onclick=loginUser() type="submit" class="btn btn-primary">Login</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Register Modal -->
-    <div class="modal fade" id="regModal" tabindex="-1" aria-labelledby="regModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="regModalLabel">Register to OMS</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="regCompanyName" class="form-label">Company Name</label>
-                        <input type="text" class="form-control" id="regCompanyName" required />
-                    </div>
-                    <div class="mb-3">
-                        <label for="regEmail" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="regEmail" aria-describedby="emailHelp" required />
-                    </div>
-                    <div class="mb-3">
-                        <label for="regPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="regPassword" required />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button id="regBtn" onclick=registerUser() type="submit" class="btn btn-primary">Submit</button>
+                    <button id="inventoryDataBtn" onclick=inventoryDataSubmit() type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </div>
@@ -134,6 +151,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
     <script src="../js/config.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../js/inventory.js"></script>
+
 </body>
 </html>
