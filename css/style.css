@@ -13,3 +13,13 @@ html, body {
 .pageContainer {
     height: 100vh;
 }
+
+.removeIcon {
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.removeIcon:hover {
+    color: #ff5757;
+}

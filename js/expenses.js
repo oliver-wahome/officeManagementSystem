@@ -17,6 +17,7 @@ firebase.firestore().collection("expenses").get()
                 content += "<td>Ksh. "+ amount +"</td>";
                 content += "<td>"+ date +"</td>";
                 content += "<td>"+ time +"</td>";
+                content += "<td><span class=\"removeIcon\"><i class=\"fa fa-minus-circle\" aria-hidden=\"true\"></i></span></td>";
             content += "</tr>";
 
             num = num + 1;
