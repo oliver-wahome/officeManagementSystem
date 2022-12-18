@@ -1,3 +1,4 @@
+/* World cup final half time comment */
 //adding inventory data to table from firestore onload of page
 firebase.firestore().collection("inventory").get()
     .then((querySnapshot) => {
