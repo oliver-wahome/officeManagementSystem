@@ -14,12 +14,16 @@ html, body {
     height: 100vh;
 }
 
-.removeIcon {
+.rowIcon {
     color: white;
     cursor: pointer;
     transition: 0.3s ease-in-out;
 }
 
-.removeIcon:hover {
+.rowIcon:hover {
     color: #ff5757;
+}
+
+#deleteModalContent {
+    white-space: pre;
 }
