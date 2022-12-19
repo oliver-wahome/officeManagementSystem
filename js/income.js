@@ -47,7 +47,7 @@ function incomeDataSubmit(){
 }
 
 //removing a row(document) of income data onclick of its removeBtn
-function removeRow(docId, num){
+function removeRow(docId){
     //collecting 
     firebase.firestore().collection("income").where("incomeId", "==", docId).get()
         .then((incomeData) =>{
